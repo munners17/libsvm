@@ -1,3 +1,5 @@
+package libsvm_java;
+
 import libsvm.*;
 import java.applet.*;
 import java.awt.*;
