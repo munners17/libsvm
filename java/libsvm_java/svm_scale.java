@@ -1,5 +1,6 @@
 package libsvm_java;
 
+
 import libsvm.*;
 import java.io.*;
 import java.util.*;
@@ -85,7 +86,7 @@ public class svm_scale
 		return line;
 	}
 
-	private void run(String []argv) throws IOException
+	public void run(String []argv) throws IOException
 	{
 		int i,index;
 		BufferedReader fp = null, fp_restore = null;
