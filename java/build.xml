@@ -1,0 +1,42 @@
+<project name="libsvm" default="help" basedir=".">
+    <description>
+    Libsvm Ant Build File
+    </description>
+
+    <target name="help">
+        <echo>
+Key Targets:
+
+   dist  - Compile and build the jar.
+   m4    - Regenerate the svm.java file 
+   clean - Clean the targets (svm.java is not changed).
+         </echo>
+    </target>
+    <target name="init">
+        <!-- Create the time stamp -->
+         <tstamp/>
+         <!-- Create the build directory structure used by compile -->
+         <mkdir dir="classes"/>
+    </target>
+
+ <target name="compile" depends="init"
+        description="compile the source " >
+    <!-- Compile the java code from ${src} into ${build} -->
+    <javac debug="yes" srcdir="libsvm" destdir="classes" includeantruntime="false" fork="true" memoryMaximumSize="100m" />
+    <javac debug="yes" srcdir="libsvm_java" destdir="classes" includeantruntime="false" fork="true" memoryMaximumSize="100m" />
+ </target>
+ <target name="dist" depends="compile">
+    <jar jarfile="libsvm_voise.jar" basedir="classes" includes="**/*"/>
+ </target>
+ <target name="clean" description="clean build">
+     <delete dir="classes" />
+     <delete file="libsvm_voise.jar" />
+ </target>
+
+ <target name="m4" description="Generate libsvm/svm.java">
+    <exec executable="m4" output="libsvm/svm.java">
+       <arg value="libsvm/svm.m4" />
+    </exec>
+ </target>
+
+</project>
